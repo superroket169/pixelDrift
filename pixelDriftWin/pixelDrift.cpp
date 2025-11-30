@@ -1,13 +1,61 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
+#include <vector>
+
 
 #define PI 3.14159265358979323846f
+
+struct markSkid
+{
+    sf::RectangleShape shape;
+    sf::Clock life;
+    int maxLifeSec;
+};
+
 
 float sigmoid(float x, float mid, float y1, float y2, float k)
 {
     return y1 + (y2 - y1) / (1.0f + expf(-k * (x - mid)));
 }
+
+bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &window ,sf::Color color)
+{
+    sf::Font font;
+    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
+
+    sf::Text boxText(str, font, 24);
+    boxText.setFillColor(sf::Color::Black);
+    boxText.setPosition(x + 50, y + (h/2) - 15);
+
+    sf::RectangleShape b;
+    b.setSize({(float)w, (float)h});
+    b.setPosition((float)x, (float)y);
+    b.setFillColor(color);
+    window.draw(b);
+    window.draw(boxText);
+
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        if (b.getGlobalBounds().contains(worldPos))
+            return 1;
+        
+    
+    return 0;
+}
+
+
+//eklenecekler:
+//  duman çıkması izi *
+//  araba lastik izi *
+//  parkurdan çıkamama *
+//  Menü: ADDED
+//      menü * ADDED
+//      parkur değişimi *
+//      araba değişimi *
+//            
 
 int main()
 {
@@ -62,6 +110,25 @@ int main()
     NeedleRpm.setPosition(rpmmeter.getPosition());
     NeedleRpm.setRotation(180);
 
+    sf::RectangleShape driftMark1(sf::Vector2f(15 ,10));
+    driftMark1.setFillColor(sf::Color::Black);
+    driftMark1.setPosition(car.getPosition().x, car.getPosition().y);
+    driftMark1.setOrigin(driftMark1.getSize().x/2, driftMark1.getSize().y/2);
+
+    sf::RectangleShape driftMark2(sf::Vector2f(15 ,10));
+    driftMark2.setFillColor(sf::Color::Black);
+    driftMark2.setPosition(car.getPosition().x, car.getPosition().y);
+    driftMark2.setOrigin(driftMark2.getSize().x/2, driftMark2.getSize().y/2);
+
+    sf::RectangleShape driftMark3(sf::Vector2f(15 ,10));
+    driftMark3.setFillColor(sf::Color::Black);
+    driftMark3.setPosition(car.getPosition().x, car.getPosition().y);
+    driftMark3.setOrigin(driftMark3.getSize().x/2, driftMark3.getSize().y/2);
+
+    sf::RectangleShape driftMark4(sf::Vector2f(15 ,10));
+    driftMark4.setFillColor(sf::Color::Black);
+    driftMark4.setPosition(car.getPosition().x, car.getPosition().y);
+    driftMark4.setOrigin(driftMark4.getSize().x/2, driftMark4.getSize().y/2);
 
     sf::Font font;
     font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
@@ -93,6 +160,7 @@ int main()
     int gear = 1;
     int optGear = 1;
     bool isGearAuto = 0;
+    bool isDrifting = 1;
 
     const float gearR = -500;
     const float gear1 = 300;
@@ -122,6 +190,8 @@ int main()
     const float gearSixMaxVel_kmh = 320;
     const float gearSvnMaxVel_kmh = 350;
 
+    std::vector<markSkid> skidMarks;
+    skidMarks.reserve(6000);
 
     float dirX, dirY, dampingMultiplier, velAngleDeg, VelDegfCar, speed, dt, rpm, functAccel, gearMaxVel, accel;
     const float Sigm = 0.02;
@@ -134,6 +204,7 @@ int main()
     const float turnSpeed = 0.001;
     const float maxTurnSpeed = 150;
     const float maxRPM = 7000;
+    const int maxLifeMarkSec = 7;
     int RpmTh = rpm / 1000;
     bool handbrake = 0;
     int speedkmh;
@@ -145,9 +216,35 @@ int main()
     sf::Clock handbrakeTimer;
     sf::Clock SteerWTimer;
 
+    sf::Clock click;
+
     while (window.isOpen())
     {
-        if(inMenu);
+        if(inMenu)//menu:
+        {
+            window.clear(sf::Color(0, 200, 200));
+
+            sf::Event event;
+            while(window.pollEvent(event))
+            {
+                if(event.type == sf::Event::Closed) window.close();
+                if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) window.close();
+            }
+
+            if(button(500, 200, 200, 100, "Play", window, sf::Color::Blue) * clock.getElapsedTime().asMilliseconds() > 100)
+            {
+                inMenu = 0;
+                clock.restart();
+            }
+            if(button(500, 350, 200, 100, "Exit", window, sf::Color::Blue) * clock.getElapsedTime().asMilliseconds() > 100)
+            {
+                window.close();
+                clock.restart();
+            }
+            
+            window.display();
+            continue;
+        }
 
         VelDegfCar = velAngleDeg - car.getRotation();
         speed = std::sqrt(velX*velX + velY*velY);
@@ -167,17 +264,17 @@ int main()
         rpmmeterBoxTextStr = std::to_string((int)(RpmTh)) + " rpm";
         rpmmeterBoxText.setString(rpmmeterBoxTextStr);
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && handbrakeTimer.getElapsedTime().asMilliseconds() > 300) // handbrake code
-        {
-            handbrake = handbrake ? 0 : 1;
-            handbrakeTimer.restart();
-        }
-
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed) window.close();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) inMenu = 1;
+        }
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::E) && handbrakeTimer.getElapsedTime().asMilliseconds() > 300) // handbrake code
+        {
+            handbrake = handbrake ? 0 : 1;
+            handbrakeTimer.restart();
         }
         
         {//gear code
@@ -303,6 +400,10 @@ int main()
 
         backGround.move(-velX * dt, -velY * dt);
 
+        for (auto &s : skidMarks)
+            s.shape.move(-velX * dt, -velY * dt);
+
+
         //sf::Vector2f pos = car.getPosition();
         //if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
         //if(pos.y >= window.getSize().y) car.setPosition(pos.x, 1);
@@ -312,6 +413,7 @@ int main()
         window.clear(sf::Color(0, 100, 200));
         window.draw(backGround);
         
+        for (auto &i : skidMarks) window.draw(i.shape);
         window.draw(car);
         window.draw(gearText);
         window.draw(speedometer);
@@ -323,15 +425,65 @@ int main()
         window.draw(NeedleRpm);
         window.draw(rpmmeterBoxText);
         window.draw(handBrakeText);
+
+        {//Marking driftMark1
+            driftMark1.setRotation(car.getRotation());
+            driftMark1.setPosition(90*cos(DEG2RAD*(car.getRotation() + 15)) + car.getPosition().x, 90*sin(DEG2RAD*(car.getRotation() + 15)) + car.getPosition().y);
+            
+            driftMark2.setRotation(car.getRotation());
+            driftMark2.setPosition(90*cos(DEG2RAD*(car.getRotation() - 15)) + car.getPosition().x, 90*sin(DEG2RAD*(car.getRotation() - 15)) + car.getPosition().y);
+            
+            driftMark3.setRotation(car.getRotation());
+            driftMark3.setPosition(25*cos(DEG2RAD*(car.getRotation() + 70 + 180)) + car.getPosition().x, 25*sin(DEG2RAD*(car.getRotation() + 70 + 180)) + car.getPosition().y);
+            
+            driftMark4.setRotation(car.getRotation());
+            driftMark4.setPosition(25*cos(DEG2RAD*(car.getRotation() - 70 + 180)) + car.getPosition().x, 25*sin(DEG2RAD*(car.getRotation() - 70 + 180)) + car.getPosition().y);
+
+            markSkid m1;
+            m1.shape = driftMark1;
+            m1.life.restart(); 
+            m1.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m2;
+            m2.shape = driftMark2;
+            m2.life.restart();
+            m2.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m3;
+            m3.shape = driftMark3;
+            m3.life.restart();
+            m3.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m4;
+            m4.shape = driftMark4;
+            m4.life.restart();
+            m4.maxLifeSec = maxLifeMarkSec;
+
+            for (int i = skidMarks.size() - 1; i >= 0; --i)
+            {
+                if (skidMarks[i].life.getElapsedTime().asSeconds() > skidMarks[i].maxLifeSec)
+                {
+                    //skidMarks.erase(skidMarks.begin() + i);
+                    skidMarks[i] = skidMarks.back();
+                    skidMarks.pop_back();
+                }
+            }
+
+            if(isDrifting)
+            {
+                if(handbrake)
+                {
+                    //skidMarks.push_back(driftMark1);
+                    //skidMarks.push_back(driftMark2);
+                    skidMarks.push_back(m3);
+                    skidMarks.push_back(m4);
+                }
+            }
+        }
         
         window.display();
 
-        //std::cout << "dt=" << dt << " speed=" << speed << " accel=" << accel << " dir=(" << dirX << "," << dirY << ")\n";
-        //std::cout << SteerWTimer.getElapsedTime().asSeconds() << " " << angularVel << "\n";
-        //std::cout << speed << "\n";
-        //std::cout << speed << " " << rpm << "\n";
-        //std::cout << functAccel << "\n";
-        //std::cout << (handbrake) << " " << optGear << "\n";
+        //std::cout <<(int)(1/dt) <<"\n"; //olm 500 fps oluto lan
     }
     return 0;
 }
