@@ -265,7 +265,7 @@ int main()
                 handBrakeText.setFillColor(sf::Color::Black);
             }
 
-            velAngleDeg = std::fmod(std::atan2(velY, velX) * RAD2DEG + 360, 360);
+            velAngleDeg = std::fmod(std::atan2(velY, velX) * RAD2DEG + 360, 360);// bu lanet satırı çetgpt yaptı
             float carAngle = std::fmod(car.getRotation() + 360, 360);
             float rel = velAngleDeg - carAngle;
             
