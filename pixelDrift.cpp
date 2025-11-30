@@ -303,11 +303,11 @@ int main()
 
         backGround.move(-velX * dt, -velY * dt);
 
-        sf::Vector2f pos = car.getPosition();
-        if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
-        if(pos.y >= window.getSize().y) car.setPosition(pos.x, 1);
-        if(pos.x <= 0) car.setPosition(window.getSize().x - 1, pos.y);
-        if(pos.y <= 0) car.setPosition(pos.x, window.getSize().y - 1);
+        //sf::Vector2f pos = car.getPosition();
+        //if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
+        //if(pos.y >= window.getSize().y) car.setPosition(pos.x, 1);
+        //if(pos.x <= 0) car.setPosition(window.getSize().x - 1, pos.y);
+        //if(pos.y <= 0) car.setPosition(pos.x, window.getSize().y - 1);
 
         window.clear(sf::Color(0, 100, 200));
         window.draw(backGround);
