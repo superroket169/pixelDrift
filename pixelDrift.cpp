@@ -57,7 +57,7 @@ int main()
 
 
     sf::Font font;
-    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf");
+    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
 
     std::string gearStr = "Gear = 1";
     sf::Text gearText(gearStr, font, 24);
@@ -66,7 +66,7 @@ int main()
 
     std::string speedometerBoxTextStr = std::to_string(10);//"0 km/h";
     sf::Text speedometerBoxText(speedometerBoxTextStr, font, 18);
-    speedometerBoxText.setPosition(80, 195);
+    speedometerBoxText.setPosition(65, 195);
     speedometerBoxText.setFillColor(sf::Color::Black);
 
     std::string rpmmeterBoxTextStr = std::to_string(10) +" rpm";
@@ -76,7 +76,7 @@ int main()
 
     std::string handBrakeTextStr = "Hande brake off";
     sf::Text handBrakeText(handBrakeTextStr, font, 24);
-    handBrakeText.setPosition(220, 20);
+    handBrakeText.setPosition(250, 20);
     handBrakeText.setFillColor(sf::Color::Black);
 
     float velX = 0;
@@ -214,7 +214,8 @@ int main()
             else if(speed < gearSvnMaxVel * 3/4) optGear = 7;
 
             if(isGearAuto) gear = optGear;
-            if(gear != optGear) gearText.setFillColor(sf::Color::Red);
+            if(isGearAuto) gearText.setFillColor(sf::Color::Yellow);
+            else if(gear != optGear) gearText.setFillColor(sf::Color::Red);
             else gearText.setFillColor(sf::Color::Black);
 
         }
