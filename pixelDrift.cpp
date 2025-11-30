@@ -6,6 +6,14 @@
 
 #define PI 3.14159265358979323846f
 
+struct markSkid
+{
+    sf::RectangleShape shape;
+    sf::Clock life;
+    int maxLifeSec;
+};
+
+
 float sigmoid(float x, float mid, float y1, float y2, float k)
 {
     return y1 + (y2 - y1) / (1.0f + expf(-k * (x - mid)));
@@ -182,7 +190,8 @@ int main()
     const float gearSixMaxVel_kmh = 320;
     const float gearSvnMaxVel_kmh = 350;
 
-    std::vector<sf::RectangleShape> skidMarks;
+    std::vector<markSkid> skidMarks;
+    skidMarks.reserve(6000);
 
     float dirX, dirY, dampingMultiplier, velAngleDeg, VelDegfCar, speed, dt, rpm, functAccel, gearMaxVel, accel;
     const float Sigm = 0.02;
@@ -195,6 +204,7 @@ int main()
     const float turnSpeed = 0.001;
     const float maxTurnSpeed = 150;
     const float maxRPM = 7000;
+    const int maxLifeMarkSec = 7;
     int RpmTh = rpm / 1000;
     bool handbrake = 0;
     int speedkmh;
@@ -391,7 +401,7 @@ int main()
         backGround.move(-velX * dt, -velY * dt);
 
         for (auto &s : skidMarks)
-            s.move(-velX * dt, -velY * dt);
+            s.shape.move(-velX * dt, -velY * dt);
 
 
         //sf::Vector2f pos = car.getPosition();
@@ -403,7 +413,7 @@ int main()
         window.clear(sf::Color(0, 100, 200));
         window.draw(backGround);
         
-        for (auto &i : skidMarks) window.draw(i);
+        for (auto &i : skidMarks) window.draw(i.shape);
         window.draw(car);
         window.draw(gearText);
         window.draw(speedometer);
@@ -428,42 +438,52 @@ int main()
             
             driftMark4.setRotation(car.getRotation());
             driftMark4.setPosition(25*cos(DEG2RAD*(car.getRotation() - 70 + 180)) + car.getPosition().x, 25*sin(DEG2RAD*(car.getRotation() - 70 + 180)) + car.getPosition().y);
-            
-            
-            //window.draw(driftMark1);
-            //window.draw(driftMark2);
-            //window.draw(driftMark3);
-            //window.draw(driftMark4);
+
+            markSkid m1;
+            m1.shape = driftMark1;
+            m1.life.restart(); 
+            m1.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m2;
+            m2.shape = driftMark2;
+            m2.life.restart();
+            m2.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m3;
+            m3.shape = driftMark3;
+            m3.life.restart();
+            m3.maxLifeSec = maxLifeMarkSec;
+
+            markSkid m4;
+            m4.shape = driftMark4;
+            m4.life.restart();
+            m4.maxLifeSec = maxLifeMarkSec;
+
+            for (int i = skidMarks.size() - 1; i >= 0; --i)
+            {
+                if (skidMarks[i].life.getElapsedTime().asSeconds() > skidMarks[i].maxLifeSec)
+                {
+                    //skidMarks.erase(skidMarks.begin() + i);
+                    skidMarks[i] = skidMarks.back();
+                    skidMarks.pop_back();
+                }
+            }
 
             if(isDrifting)
             {
-                //auto *mark1 = new sf::RectangleShape;
-                //auto *mark2 = new sf::RectangleShape;
-                //auto *mark3 = new sf::RectangleShape;
-                //auto *mark4 = new sf::RectangleShape;
-                
-                //*mark1 = driftMark1;
-                //*mark2 = driftMark2;
-                //*mark3 = driftMark3;
-                //*mark4 = driftMark4;
-
-                //skidMarks.push_back(*mark1);
-                //skidMarks.push_back(*mark2);
-                //skidMarks.push_back(*mark3);
-                //skidMarks.push_back(*mark4);
                 if(handbrake)
                 {
                     //skidMarks.push_back(driftMark1);
                     //skidMarks.push_back(driftMark2);
-                    skidMarks.push_back(driftMark3);
-                    skidMarks.push_back(driftMark4);
+                    skidMarks.push_back(m3);
+                    skidMarks.push_back(m4);
                 }
-
             }
-
         }
         
         window.display();
+
+        //std::cout <<(int)(1/dt) <<"\n"; //olm 500 fps oluto lan
     }
     return 0;
 }
