@@ -140,9 +140,8 @@ int main()
 
     while (window.isOpen())
     {
-        if(inMenu)
+        if(inMenu);
 
-        velAngleDeg = std::fmod(std::atan2(velY, velX) * RAD2DEG + 360, 360);
         VelDegfCar = velAngleDeg - car.getRotation();
         speed = std::sqrt(velX*velX + velY*velY);
         if(speed < 5) speed = 0;
