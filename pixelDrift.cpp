@@ -19,7 +19,7 @@ int main()
     if(!carTexture.loadFromFile("carTexture.png")) std::cout << "file cant opened\n";
 
     sf::Texture bgTexture;
-    if (!bgTexture.loadFromFile("backGround1.png")) std::cout << "background file cant opened\n";
+    if (!bgTexture.loadFromFile("backGround2.png")) std::cout << "background file cant opened\n";
     sf::Sprite backGround(bgTexture);
     backGround.scale(7, 7);
 
