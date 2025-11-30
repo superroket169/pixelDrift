@@ -9,6 +9,44 @@ float sigmoid(float x, float mid, float y1, float y2, float k)
     return y1 + (y2 - y1) / (1.0f + expf(-k * (x - mid)));
 }
 
+bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &window ,sf::Color color)
+{
+    sf::Font font;
+    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
+
+    sf::Text boxText(str, font, 24);
+    boxText.setFillColor(sf::Color::Black);
+    boxText.setPosition(x + 50, y + (h/2) - 15);
+
+    sf::RectangleShape b;
+    b.setSize({(float)w, (float)h});
+    b.setPosition((float)x, (float)y);
+    b.setFillColor(color);
+    window.draw(b);
+    window.draw(boxText);
+
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+    sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        if (b.getGlobalBounds().contains(worldPos))
+            return 1;
+        
+    
+    return 0;
+}
+
+
+//eklenecekler:
+//  duman çıkması izi *
+//  araba lastik izi *
+//  parkurdan çıkamama *
+//  Menü: 
+//      menü *
+//      parkur değişimi *
+//      araba değişimi *
+//            
+
 int main()
 {
     const int windowX = 1200;
@@ -145,9 +183,36 @@ int main()
     sf::Clock handbrakeTimer;
     sf::Clock SteerWTimer;
 
+    sf::Clock click;
+
     while (window.isOpen())
     {
-        if(inMenu);
+        
+        if(inMenu)
+        {
+            window.clear(sf::Color(0, 200, 200));
+
+            sf::Event event;
+            while(window.pollEvent(event))
+            {
+                if(event.type == sf::Event::Closed) window.close();
+                if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) window.close();
+            }
+
+            if(button(500, 200, 200, 100, "Play", window, sf::Color::Blue) * clock.getElapsedTime().asMilliseconds() > 100)
+            {
+                inMenu = 0;
+                clock.restart();
+            }
+            if(button(500, 350, 200, 100, "Exit", window, sf::Color::Blue) * clock.getElapsedTime().asMilliseconds() > 100)
+            {
+                window.close();
+                clock.restart();
+            }
+            
+            window.display();
+            continue;
+        }
 
         VelDegfCar = velAngleDeg - car.getRotation();
         speed = std::sqrt(velX*velX + velY*velY);
@@ -177,7 +242,7 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed) window.close();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) window.close();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) inMenu = 1;
         }
         
         {//gear code
