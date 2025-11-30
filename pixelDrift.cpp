@@ -11,16 +11,23 @@ float sigmoid(float x, float mid, float y1, float y2, float k)
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "PixelDrift");
+    const int windowX = 1200;
+    const int windowY = 800;
+    sf::RenderWindow window(sf::VideoMode(windowX, windowY), "PixelDrift");
 
     sf::Texture carTexture;
     if(!carTexture.loadFromFile("carTexture.png")) std::cout << "file cant opened\n";
+
+    sf::Texture bgTexture;
+    if (!bgTexture.loadFromFile("backGround1.png")) std::cout << "background file cant opened\n";
+    sf::Sprite backGround(bgTexture);
+    backGround.scale(7, 7);
 
     sf::RectangleShape car(sf::Vector2f(carTexture.getSize().x, carTexture.getSize().y));
     car.setTexture(&carTexture);
     car.setScale(2, 2);
     car.setOrigin(car.getSize().x/4, car.getSize().y/2);
-    car.setPosition(450, 450);
+    car.setPosition(windowX/2, windowY/2);
     car.setRotation(0); // for look up
 
     sf::CircleShape speedometer(100);
@@ -294,7 +301,7 @@ int main()
             }
         }
 
-        car.move(velX * dt, velY * dt);
+        backGround.move(-velX * dt, -velY * dt);
 
         sf::Vector2f pos = car.getPosition();
         if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
@@ -303,6 +310,8 @@ int main()
         if(pos.y <= 0) car.setPosition(pos.x, window.getSize().y - 1);
 
         window.clear(sf::Color(0, 100, 200));
+        window.draw(backGround);
+        
         window.draw(car);
         window.draw(gearText);
         window.draw(speedometer);
