@@ -131,7 +131,7 @@ int main()
     driftMark4.setOrigin(driftMark4.getSize().x/2, driftMark4.getSize().y/2);
 
     sf::Font font;
-    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
+    font.loadFromFile("DejaVuSans-Bold.ttf");
 
     std::string gearStr = "Gear = 1";
     sf::Text gearText(gearStr, font, 24);
@@ -152,6 +152,12 @@ int main()
     sf::Text handBrakeText(handBrakeTextStr, font, 24);
     handBrakeText.setPosition(250, 20);
     handBrakeText.setFillColor(sf::Color::Black);
+
+
+    std::string fpsMeterStr = "FPS : ";
+    sf::Text fpsMeterText(fpsMeterStr, font, 24);
+    fpsMeterText.setPosition(windowX - 200, windowY - 50);
+    fpsMeterText.setFillColor(sf::Color::Black);
 
     float velX = 0;
     float velY = 0;
@@ -219,6 +225,8 @@ int main()
 
     sf::Clock click;
 
+    sf::Clock test;
+
     while (window.isOpen())
     {
         if(inMenu)//menu:
@@ -253,8 +261,14 @@ int main()
         speedkmh = int(speed * 0.12);
 
         dt = clock.restart().asSeconds();
-        if (dt <= 0) dt = 1/60;// pin fps to 60
-        std::cout << 5 <<"\n"; //olm 500 fps oluto lan
+
+        if(test.getElapsedTime().asSeconds() > 0.2)
+        {
+            fpsMeterStr = "FPS : " + std::to_string(((int)((1/dt)/10))*10); //olm 500 fps oluto lan
+            test.restart();
+        }
+        fpsMeterText.setString(fpsMeterStr);
+
 
         NeedleSpeed.setRotation((speed * 0.12)/2 + 180);
         speedometerBoxTextStr = std::to_string(speedkmh) + " km/h";
@@ -435,6 +449,7 @@ int main()
         window.draw(NeedleRpm);
         window.draw(rpmmeterBoxText);
         window.draw(handBrakeText);
+        window.draw(fpsMeterText);
 
         {//Marking driftMark1
             driftMark1.setRotation(car.getRotation());

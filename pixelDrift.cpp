@@ -131,7 +131,7 @@ int main()
     driftMark4.setOrigin(driftMark4.getSize().x/2, driftMark4.getSize().y/2);
 
     sf::Font font;
-    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
+    font.loadFromFile("DejaVuSans-Bold.ttf");
 
     std::string gearStr = "Gear = 1";
     sf::Text gearText(gearStr, font, 24);
@@ -260,8 +260,7 @@ int main()
         if(speed < 5) speed = 0;
         speedkmh = int(speed * 0.12);
 
-        clock.restart();
-        dt = clock.getElapsedTime().asSeconds();
+        dt = clock.restart().asSeconds();
 
         if(test.getElapsedTime().asSeconds() > 0.2)
         {
