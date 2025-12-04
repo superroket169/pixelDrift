@@ -153,6 +153,12 @@ int main()
     handBrakeText.setPosition(250, 20);
     handBrakeText.setFillColor(sf::Color::Black);
 
+
+    std::string fpsMeterStr = "FPS : ";
+    sf::Text fpsMeterText(fpsMeterStr, font, 24);
+    fpsMeterText.setPosition(windowX - 200, windowY - 50);
+    fpsMeterText.setFillColor(sf::Color::Black);
+
     float velX = 0;
     float velY = 0;
 
@@ -215,8 +221,11 @@ int main()
     sf::Clock gearTimer;
     sf::Clock handbrakeTimer;
     sf::Clock SteerWTimer;
+    sf::Clock alphaInc;
 
     sf::Clock click;
+
+    sf::Clock test;
 
     while (window.isOpen())
     {
@@ -251,8 +260,16 @@ int main()
         if(speed < 5) speed = 0;
         speedkmh = int(speed * 0.12);
 
-        dt = clock.restart().asSeconds();
-        if (dt <= 0) dt = 1/60;// pin fps to 60
+        clock.restart();
+        dt = clock.getElapsedTime().asSeconds();
+
+        if(test.getElapsedTime().asSeconds() > 0.2)
+        {
+            fpsMeterStr = "FPS : " + std::to_string(((int)((1/dt)/10))*10); //olm 500 fps oluto lan
+            test.restart();
+        }
+        fpsMeterText.setString(fpsMeterStr);
+
 
         NeedleSpeed.setRotation((speed * 0.12)/2 + 180);
         speedometerBoxTextStr = std::to_string(speedkmh) + " km/h";
@@ -400,9 +417,17 @@ int main()
 
         backGround.move(-velX * dt, -velY * dt);
 
-        for (auto &s : skidMarks)
-            s.shape.move(-velX * dt, -velY * dt);
+        for (auto &i : skidMarks) i.shape.move(-velX * dt, -velY * dt);
 
+        //for (auto &i : skidMarks)
+        {
+            if(alphaInc.getElapsedTime().asSeconds() > 0.1)
+            {
+                for (auto &i : skidMarks) if(i.shape.getFillColor().a > 2) i.shape.setFillColor(sf::Color(i.shape.getFillColor().r, i.shape.getFillColor().g, i.shape.getFillColor().b, i.shape.getFillColor().a - 100 * dt));
+                
+                alphaInc.restart();
+            }
+        }
 
         //sf::Vector2f pos = car.getPosition();
         //if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
@@ -425,6 +450,7 @@ int main()
         window.draw(NeedleRpm);
         window.draw(rpmmeterBoxText);
         window.draw(handBrakeText);
+        window.draw(fpsMeterText);
 
         {//Marking driftMark1
             driftMark1.setRotation(car.getRotation());
@@ -461,10 +487,10 @@ int main()
 
             for (int i = skidMarks.size() - 1; i >= 0; --i)
             {
-                if (skidMarks[i].life.getElapsedTime().asSeconds() > skidMarks[i].maxLifeSec)
+                if(skidMarks[i].life.getElapsedTime().asSeconds() > skidMarks[i].maxLifeSec || skidMarks[i].shape.getFillColor().a < 1)
                 {
-                    //skidMarks.erase(skidMarks.begin() + i);
-                    skidMarks[i] = skidMarks.back();
+                    //skidMarks.erase(skidMarks.begin() + i); // O(n) oha 
+                    skidMarks[i] = skidMarks.back();// O(1) (:
                     skidMarks.pop_back();
                 }
             }
@@ -483,7 +509,6 @@ int main()
         
         window.display();
 
-        //std::cout <<(int)(1/dt) <<"\n"; //olm 500 fps oluto lan
     }
     return 0;
 }
