@@ -22,7 +22,7 @@ float sigmoid(float x, float mid, float y1, float y2, float k)
 bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &window ,sf::Color color)
 {
     sf::Font font;
-    font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf");
+    font.loadFromFile("DejaVuSans-Bold.ttf");
 
     sf::Text boxText(str, font, 24);
     boxText.setFillColor(sf::Color::Black);
