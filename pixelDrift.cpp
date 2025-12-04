@@ -45,13 +45,12 @@ bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &windo
     return 0;
 }
 
-
 //eklenecekler:
 //  duman çıkması izi *
-//  araba lastik izi *
-//  parkurdan çıkamama *
+//  araba lastik izi ADDED * but should be improve
+//  parkurdan çıkamama ADDED
 //  Menü: ADDED
-//      menü * ADDED
+//      menu ADDED
 //      parkur değişimi *
 //      araba değişimi *
 //            
@@ -455,15 +454,6 @@ int main()
             
             alphaInc.restart();
         }
-
-        
-
-        //sf::Vector2f pos = car.getPosition();
-        //if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
-        //if(pos.y >= window.getSize().y) car.setPosition(pos.x, 1);
-        //if(pos.x <= 0) car.setPosition(window.getSize().x - 1, pos.y);
-        //if(pos.y <= 0) car.setPosition(pos.x, window.getSize().y - 1);
-        //(-1300, -600)
 
         miniMapPointer.setPosition(-(backGround.getPosition().x - 1300/2) * (0.3/12) + 1000, -(backGround.getPosition().y - 600/2 - 100) * (0.3/12) + 600);
 
