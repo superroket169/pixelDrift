@@ -71,6 +71,15 @@ int main()
     backGround.scale(12, 12);
     backGround.setPosition(-1300, -600);
 
+    sf::Sprite miniMap(bgTexture);
+    miniMap.scale(0.3, 0.3);
+    miniMap.setPosition(1000, 600);
+
+    sf::CircleShape miniMapPointer(3);
+    miniMapPointer.setFillColor(sf::Color::Black);
+    miniMapPointer.setOrigin(miniMapPointer.getRadius(), miniMapPointer.getRadius());
+    miniMapPointer.setPosition(1000, 600);
+
     sf::RectangleShape car(sf::Vector2f(carTexture.getSize().x, carTexture.getSize().y));
     car.setTexture(&carTexture);
     car.setScale(2, 2);
@@ -218,14 +227,14 @@ int main()
     bool inMenu = 1;
 
     sf::Clock clock;
-    sf::Clock menuTimer;
     sf::Clock gearTimer;
     sf::Clock handbrakeTimer;
     sf::Clock SteerWTimer;
     sf::Clock alphaInc;
     sf::Clock click;
-
     sf::Clock test;
+
+    sf::Clock menuTimer;
 
     window.clear(sf::Color(0, 200, 200));
 
@@ -419,28 +428,49 @@ int main()
             }
         }
 
-        backGround.move(-velX * dt, -velY * dt);
+        //sınır algılaması:
+        const float MIN_X = -5400.f;
+        const float MAX_X = 600.f;
+        const float MIN_Y = -5600.f;
+        const float MAX_Y = 410.f;
 
-        for (auto &i : skidMarks) i.shape.move(-velX * dt, -velY * dt);
+        float dx = -velX * dt;
+        float dy = -velY * dt;
 
-        //for (auto &i : skidMarks)
+        float nextX = backGround.getPosition().x + dx;
+        float nextY = backGround.getPosition().y + dy;
+
+        if (nextX < MIN_X) dx = MIN_X - backGround.getPosition().x;
+        if (nextX > MAX_X) dx = MAX_X - backGround.getPosition().x;
+        if (nextY < MIN_Y) dy = MIN_Y - backGround.getPosition().y;
+        if (nextY > MAX_Y) dy = MAX_Y - backGround.getPosition().y;
+
+        // uygula
+        backGround.move(dx, dy);
+        for (auto &i : skidMarks) i.shape.move(dx, dy);
+
+        if(alphaInc.getElapsedTime().asSeconds() > 0.1)
         {
-            if(alphaInc.getElapsedTime().asSeconds() > 0.1)
-            {
-                for (auto &i : skidMarks) if(i.shape.getFillColor().a > 2) i.shape.setFillColor(sf::Color(i.shape.getFillColor().r, i.shape.getFillColor().g, i.shape.getFillColor().b, i.shape.getFillColor().a - 100 * dt));
-                
-                alphaInc.restart();
-            }
+            for (auto &i : skidMarks) if(i.shape.getFillColor().a > 2) i.shape.setFillColor(sf::Color(i.shape.getFillColor().r, i.shape.getFillColor().g, i.shape.getFillColor().b, i.shape.getFillColor().a - 200 * dt));
+            
+            alphaInc.restart();
         }
+
+        
 
         //sf::Vector2f pos = car.getPosition();
         //if(pos.x >= window.getSize().x) car.setPosition(1, pos.y);
         //if(pos.y >= window.getSize().y) car.setPosition(pos.x, 1);
         //if(pos.x <= 0) car.setPosition(window.getSize().x - 1, pos.y);
         //if(pos.y <= 0) car.setPosition(pos.x, window.getSize().y - 1);
+        //(-1300, -600)
+
+        miniMapPointer.setPosition(-(backGround.getPosition().x - 1300/2) * (0.3/12) + 1000, -(backGround.getPosition().y - 600/2 - 100) * (0.3/12) + 600);
 
         window.clear(sf::Color(0, 100, 200));
         window.draw(backGround);
+        window.draw(miniMap);
+        window.draw(miniMapPointer);
         
         for (auto &i : skidMarks) window.draw(i.shape);
         window.draw(car);
@@ -511,6 +541,8 @@ int main()
         }
         
         window.display();
+        //std::cout << backGround.getPosition().x << " ";
+        //std::cout << backGround.getPosition().y << "\n";
 
     }
     return 0;
