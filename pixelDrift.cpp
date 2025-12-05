@@ -53,7 +53,10 @@ bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &windo
 //      menu ADDED
 //      parkur değişimi *
 //      araba değişimi *
-//            
+//
+//istekler:
+//  sürtünmeyi ve frenin katsayısını azaltma
+//  herkes tarafından kullanılabilirlik ekleme
 
 int main()
 {
@@ -176,14 +179,16 @@ int main()
     bool isGearAuto = 0;
     bool isDrifting = 1;
 
-    const float gearR = -500;
-    const float gear1 = 300;
-    const float gear2 = 700;
-    const float gear3 = 1200;
-    const float gear4 = 1800;
-    const float gear5 = 2300;
-    const float gear6 = 2650;
-    const float gear7 = 2900;
+    const float damping = 0.5;
+
+    const float gearR = -500 * damping;
+    const float gear1 = 300  * damping;
+    const float gear2 = 700  * damping;
+    const float gear3 = 1200 * damping;
+    const float gear4 = 1800 * damping;
+    const float gear5 = 2300 * damping;
+    const float gear6 = 2650 * damping;
+    const float gear7 = 2900 * damping;
 
     const float gearMaxes[8] = {125, 300, 700, 1200, 1800, 2300, 2650, 2900};
     const float gearRtrMaxVel = 125;
@@ -195,6 +200,7 @@ int main()
     const float gearSixMaxVel = 2650;
     const float gearSvnMaxVel = 2900;
 
+    //hiçbirişe yaramayan değişkenler : 
     const float gearRtrMaxVel_kmh = 14;
     const float gearOneMaxVel_kmh = 35;
     const float gearSecMaxVel_kmh = 85;
@@ -209,7 +215,6 @@ int main()
 
     float dirX, dirY, dampingMultiplier, velAngleDeg, VelDegfCar, speed, dt, rpm, functAccel, gearMaxVel, accel;
     const float Sigm = 0.02;
-    const float damping = 1;
     const float brakeForce = 2.2;
     const float handBrakeForce = 0.3;
     const float turnAccel = 1;
@@ -234,6 +239,7 @@ int main()
     sf::Clock test;
 
     sf::Clock menuTimer;
+    sf::Clock timerbb;
 
     window.clear(sf::Color(0, 200, 200));
 
@@ -262,8 +268,10 @@ int main()
             }
             
             window.display();
+            timerbb.restart();
             continue;
         }
+        //std::cout << timerbb.getElapsedTime().asSeconds() << "\n";
 
         VelDegfCar = velAngleDeg - car.getRotation();
         speed = std::sqrt(velX*velX + velY*velY);
@@ -337,7 +345,7 @@ int main()
             if(isGearAuto == 1) gearStr += " (Auto)";
             gearText.setString(gearStr);
 
-            if(speed < gearOneMaxVel * 3/4) optGear = 1;
+            if(speed < gearOneMaxVel * 3/5) optGear = 1;
             else if(speed < gearSecMaxVel * 3/4) optGear = 2;
             else if(speed < gearThiMaxVel * 3/4) optGear = 3;
             else if(speed < gearFrtMaxVel * 3/4) optGear = 4;
@@ -397,7 +405,8 @@ int main()
                 handBrakeText.setFillColor(sf::Color::Black);
             }
 
-            velAngleDeg = std::fmod(std::atan2(velY, velX) * RAD2DEG + 360, 360);// bu lanet satırı çetgpt yaptı
+            //arabanın hız vektörünün yönünün arabanın yönüne farkını bulma:
+            velAngleDeg = std::fmod(std::atan2(velY, velX) * RAD2DEG + 360, 360);
             float carAngle = std::fmod(car.getRotation() + 360, 360);
             float rel = velAngleDeg - carAngle;
             
@@ -405,10 +414,9 @@ int main()
             if (rel < -180) rel += 360;
             
             rel = std::abs(rel);
-            
             if (rel > 90) rel = 90;
 
-            const float MaxExtra = 4;
+            const float MaxExtra = 5.5;
             if(handbrake) dampingMultiplier = 1 + handBrakeForce;
             else dampingMultiplier = 1 + MaxExtra * (rel / 90);//re/90 en fazla 1 // burası en fazla 1 + 4 den 5 oluyo
 
@@ -444,11 +452,11 @@ int main()
         if (nextY < MIN_Y) dy = MIN_Y - backGround.getPosition().y;
         if (nextY > MAX_Y) dy = MAX_Y - backGround.getPosition().y;
 
-        // uygula
+        // çizmeler:
         backGround.move(dx, dy);
         for (auto &i : skidMarks) i.shape.move(dx, dy);
 
-        if(alphaInc.getElapsedTime().asSeconds() > 0.1)
+        if(alphaInc.getElapsedTime().asSeconds() > 0.1)//burası da çalışmıyo
         {
             for (auto &i : skidMarks) if(i.shape.getFillColor().a > 2) i.shape.setFillColor(sf::Color(i.shape.getFillColor().r, i.shape.getFillColor().g, i.shape.getFillColor().b, i.shape.getFillColor().a - 200 * dt));
             
