@@ -58,6 +58,19 @@ bool button(int x, int y, int w, int h, std::string str, sf::RenderWindow &windo
 //  sürtünmeyi ve frenin katsayısını azaltma
 //  herkes tarafından kullanılabilirlik ekleme
 
+//Oyuna eklenecek araçlar (viteslerde R sayılmadı):
+//Nissan Silvia S15                 — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~240 km/h — 0–100: ~5.5–6.0  s   — RWD — Klasik drift aracı, kontrol odaklı, oyun için “orta güç” default.
+//Nissan 180SX / Silvia S13         — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~230 km/h — 0–100: ~7.5–8.5  s   — RWD — Hafif, flick/flick-initiations için çok zevkli.
+//Nissan 350Z                       — Vites: 6 (manuel) / 5 (otomatik) — Maks: ~260 km/h — 0–100: ~5.5–6.0  s   — RWD — Dengeli ve modern his, hem drift hem hız kombinasyonları.
+//Toyota AE86 (Hachiroku)           — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~185 km/h — 0–100: ~9–10     s   — RWD — Teknik drift, düşük güç ama yüksek öğrenme eğrisi.
+//Toyota JZX100 Chaser              — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~240 km/h — 0–100: ~6.0–7.0  s   — RWD — Ağırlıklı, uzun kontrollü slaytlar için ideal (momentum oyunu).
+//Toyota Supra MK4 (A80, 2JZ TT)    — Vites: 6 (manuel) / 4 (otomatik) — Maks: ~280 km/h — 0–100: ~4.5–5.0  s   — RWD — Güç odaklı; power-sliding / long slides için süper.
+//Mazda MX-5 NA                     — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~180 km/h — 0–100: ~9.5–10.5 s   — RWD — Çok hafif, hızlı yön değişimi; teknik oyunculara hitap eder.
+//Mazda RX-7 FD                     — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~250 km/h — 0–100: ~5.5–6.0  s   — RWD — Turbo karakteri / turbo-lag hissi ekleyerek oyun deneyimini zenginleştirir.
+//BMW E36 M3                        — Vites: 5 (manuel) / 4 (otomatik) — Maks: ~250 km/h — 0–100: ~5.8–6.5  s   — RWD — Avrupa tarzı ağırlık hissi; E60’ten farklı bir “dönüş hissi” katar.
+//BMW E60 (default)                 — Vites: 6 (manuel) / 6 (otomatik) — Maks: ~250 km/h — 0–100: ~5.5–6.5  s   — RWD — Oyundaki “büyük sedan” hissi; S15 gibi küçük drift araçlarla kontrast sağlar.
+//Ford Mustang GT (S197)            — Vites: 5 (manuel) / 5 (otomatik) — Maks: ~270 km/h — 0–100: ~5.1-5.5  s   — RWD — Ağır ve patlayıcı; Amerikan power-drift deneyimi.
+
 int main()
 {
     const int windowX = 1200;
