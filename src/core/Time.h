@@ -1,8 +1,7 @@
 #pragma once
 #include <chrono>
 
-class Time
-{
+class Time {
 public:
     void start();
     void pause();
