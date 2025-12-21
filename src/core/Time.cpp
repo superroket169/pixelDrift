@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Time.h"
 
 void Time::start()
