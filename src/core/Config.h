@@ -20,14 +20,16 @@ inline constexpr char backGroundPath[] =    "../assets/maps/default/backGround2.
 
 inline constexpr float damping = 0.5;
 
-inline constexpr float gearR =             -500 * damping;
-inline constexpr float gear1 =              300  * damping;
-inline constexpr float gear2 =              700  * damping;
-inline constexpr float gear3 =              1200 * damping;
-inline constexpr float gear4 =              1800 * damping;
-inline constexpr float gear5 =              2300 * damping;
-inline constexpr float gear6 =              2650 * damping;
-inline constexpr float gear7 =              2900 * damping;
+inline constexpr float gearAccels[8] = {
+    -500 * damping,
+    300  * damping,
+    700  * damping,
+    1200 * damping,
+    1800 * damping,
+    2300 * damping,
+    2650 * damping,
+    2900 * damping
+};
 
 inline constexpr float gearMaxes[8] = {
     125, 
@@ -40,15 +42,7 @@ inline constexpr float gearMaxes[8] = {
     2900
 };
 
-// gearMaxes var, bunlara gerek yok:
-//inline constexpr float gearRtrMaxVel =      125;
-//inline constexpr float gearOneMaxVel =      300;
-//inline constexpr float gearSecMaxVel =      700;
-//inline constexpr float gearThiMaxVel =      1200;
-//inline constexpr float gearFrtMaxVel =      1800;
-//inline constexpr float gearFthMaxVel =      2300;
-//inline constexpr float gearSixMaxVel =      2650;
-//inline constexpr float gearSvnMaxVel =      2900;
+inline constexpr float recommenedGearConstant = 0.75f;
 
 inline constexpr float gearRtrMaxVel_kmh =  14;
 inline constexpr float gearOneMaxVel_kmh =  35;
@@ -59,7 +53,7 @@ inline constexpr float gearFthMaxVel_kmh =  275;
 inline constexpr float gearSixMaxVel_kmh =  320;
 inline constexpr float gearSvnMaxVel_kmh =  350;
 
-inline constexpr float Sigm =               0.02;
+inline constexpr float Sigm =               0.012;
 
 inline constexpr float brakeForce =         2.2;
 inline constexpr float handBrakeForce =     0.3;

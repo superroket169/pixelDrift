@@ -1,6 +1,7 @@
 #pragma once
 
-enum class Action {
+enum class Action
+{
     Throttle,
     Brake,
     HandBrake,
@@ -12,7 +13,8 @@ enum class Action {
     GearDown
 };
 
-class Input {
+class Input 
+{
 public:
     static void update();
     static bool isDown(Action action);

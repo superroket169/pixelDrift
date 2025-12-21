@@ -379,7 +379,7 @@ int main()
         }
 
         {//steering code:
-            float angularVel = 0;
+            float angularVel = 0;// theres a bug but ı wont fix it
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
                 angularVel = -turnSpeed * pow(speed, 1.1) * SteerWTimer.getElapsedTime().asMilliseconds();

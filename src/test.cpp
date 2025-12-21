@@ -1,16 +1,17 @@
 #include "core/Time.h"
 
-int main() {
+int main()
+{
     Time t;
     t.start();
     return 0;
 }
 
 
-// core/Config.h
-// core/Time.h/cpp
-// core/Utils.h/cpp
-// input/input.h/cpp
+// core/Config.h // added
+// core/Time.h/cpp // added
+// core/Utils.h/cpp // added?
+// input/input.h/cpp // added
 // physics/CarPhysics.h/cpp
 // entity/Car.h/cpp
 // entity/SkidMark.h/cpp

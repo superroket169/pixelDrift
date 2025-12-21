@@ -3,8 +3,10 @@
 #include <unordered_map>
 #include <vector>
 
-namespace {
-    std::unordered_map<Action, std::vector<sf::Keyboard::Key>> keyMap = {
+namespace
+{
+    std::unordered_map<Action, std::vector<sf::Keyboard::Key>> keyMap =
+    {
         {Action::Throttle,   {sf::Keyboard::W, sf::Keyboard::Up}},
         {Action::Brake,     {sf::Keyboard::S, sf::Keyboard::Down}},
         {Action::SteerLeft, {sf::Keyboard::A, sf::Keyboard::Left}},
@@ -20,13 +22,17 @@ namespace {
     std::unordered_map<Action, bool> prev;
 }
 
-void Input::update() {
+void Input::update()
+{
     prev = curr;
 
-    for (auto& [action, keys] : keyMap) {
+    for (auto& [action, keys] : keyMap)
+    {
         bool pressed = false;
-        for (auto key : keys) {
-            if (sf::Keyboard::isKeyPressed(key)) {
+        for (auto key : keys)
+        {
+            if (sf::Keyboard::isKeyPressed(key))
+            {
                 pressed = true;
                 break;
             }
@@ -35,11 +41,13 @@ void Input::update() {
     }
 }
 
-bool Input::isDown(Action action) {
+bool Input::isDown(Action action)
+{
     return curr[action];
 }
 
-bool Input::isPressed(Action action) {
+bool Input::isPressed(Action action)
+{
     return curr[action] && !prev[action];
 }
 
