@@ -1,3 +1,4 @@
+// CarPhysics.cpp:
 #include "CarPhysics.h"
 #include "../core/Utils.h"
 #include "../core/Config.h"
@@ -8,7 +9,7 @@ Physics::Output Physics::CarPhysics::update(const Input& input, float dt)
 
     out.acceleration = computeAcceleration(input.speed, input.gear, input.throttle);
     out.angularVelocity = computeSteer(input.speed, input.steeredTime ,input.steerDir);
-    out.slip = input.handbrake && input.speed > 20.f;
+    out.slip = input.handbrake;
 
     if(input.autoGear)
         out.recommendedGear = calculateOptGear(input.speed);
@@ -27,13 +28,13 @@ Physics::Gear Physics::CarPhysics::calculateOptGear(float speed) const
     return Physics::Gear::Seven;
 }
 
-float Physics::CarPhysics::computeAcceleration(float speed, Physics::Gear gear, bool throotle) const
+float Physics::CarPhysics::computeAcceleration(float speed, Physics::Gear gear, bool throttle) const
 {
-    if(throotle)
+    if(throttle)
     {
         if(gear == Physics::Gear::R) return gearAccels[0];
         int intGear = static_cast<int>(gear);
-        return sigmoid(speed, gearMaxes[intGear] / 3, gearMaxes[1] * gearMaxes[1] / gearMaxes[intGear], gearAccels[intGear], Sigm);
+        return sigmoid(speed, gearMaxes[intGear] / 3, gearMaxes[1] * gearMaxes[1] / gearMaxes[intGear], gearAccels[intGear], SigmoidKConstant);
 
         // plan : sigmoid will be simplefied
     }
@@ -42,7 +43,7 @@ float Physics::CarPhysics::computeAcceleration(float speed, Physics::Gear gear, 
 
 float Physics::CarPhysics::computeSteer(float speed, float steeredTime, steerStatus steerDir) const
 {
-    if(steerDir == Physics::steerStatus::Left) return -turnSpeed * pow(speed, 1.1) * steeredTime;
-    if(steerDir == Physics::steerStatus::Right) return -turnSpeed * pow(speed, 1.1) * steeredTime;
-    if(steerDir == Physics::steerStatus::Forward) return 0.f;
+    if(steerDir == Physics::steerStatus::Left) return -turnSpeed * pow(speed, turnPowConstant) * steeredTime;
+    if(steerDir == Physics::steerStatus::Right) return turnSpeed * pow(speed, turnPowConstant) * steeredTime;
+    return 0.f;
 }

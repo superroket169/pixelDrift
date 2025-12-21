@@ -53,7 +53,8 @@ inline constexpr float gearFthMaxVel_kmh =  275;
 inline constexpr float gearSixMaxVel_kmh =  320;
 inline constexpr float gearSvnMaxVel_kmh =  350;
 
-inline constexpr float Sigm =               0.012;
+inline constexpr float SigmoidKConstant =   0.012;
+inline constexpr float SigmoidMidConstant = 3.f;
 
 inline constexpr float brakeForce =         2.2;
 inline constexpr float handBrakeForce =     0.3;
@@ -61,6 +62,7 @@ inline constexpr float handBrakeForce =     0.3;
 inline constexpr float turnSpeed =          0.001;
 inline constexpr float maxTurnSpeed =       150;
 inline constexpr float maxRPM =             7000;
+inline constexpr float turnPowConstant =    1.1;
 
 inline constexpr float DEG2RAD =            PI / 180;
 inline constexpr float RAD2DEG =            180 / PI;
