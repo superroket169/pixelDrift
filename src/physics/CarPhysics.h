@@ -40,6 +40,7 @@ namespace Physics
         steerStatus steerDir;
         bool throttle;     // aralık :  0 -> 1
         bool  handbrake;
+        bool  brake;
         Gear  gear;
         bool  autoGear;
     };
@@ -65,3 +66,5 @@ namespace Physics
         float computeSteer(float speed, float steeredTime, steerStatus steerDir) const;
     };
 }
+
+// brake kodu eklenecek
