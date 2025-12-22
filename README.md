@@ -1,5 +1,9 @@
 # pixelDrift
 
+> [!Warning]
+> Currently switching to modular file structure
+> Code may have a lot of bug
+
 **A simple, pixel-based driving game/simulation focused on realistic drift physics.**
 
 `pixelDrift` is a C++ project that uses the **SFML** library. The goal is to create a fun, technical drift experience by using a dynamic friction model. The model checks the angle between the car's speed and its direction to create realistic drifting.
