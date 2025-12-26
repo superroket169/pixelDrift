@@ -9,9 +9,9 @@
 class Car
 {
 public:
-    Car();
+    Car() = default;
 
-    void update(const Input& input, const Track& track, float dt);
+    void update(const KeyInput& input, const Track& track, float dt);
 
     Coord getPosition() const;
     float getRotation() const;
@@ -24,7 +24,7 @@ private:
     float speed = 0.f;
     float rpm = 0.f;
 
-    Physics::Output physicsOut;
+    Physics::PhysicsOutput physicsOut;
 
     float throttle = 0.f;
     float brake = 0.f;
@@ -32,5 +32,5 @@ private:
     float steer = 0.f;
     Physics::Gear gear = Physics::Gear::One;
 
-    void applyPhysicsOutput(float dt);
+    void applyPhysicsPhysicsOutput(float dt);
 };

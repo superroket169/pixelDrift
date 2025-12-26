@@ -1,40 +1,52 @@
 #include "Car.h"
 
-void Car::update(const Input& input, const Track& track, float dt)
+void Car::update(const KeyInput& keyInput, const Track& track, float dt)
 {
-    if(Input::isDown(Action::Brake))
+    Physics::PhysicsInput physicsInput;
+    Physics::PhysicsOutput physicsOutput;
+
+    // bools:
+    physicsInput.autoGear = KeyInput::isDown(Action::GearAuto);
+    physicsInput.brake = KeyInput::isDown(Action::Brake);
+    physicsInput.handbrake = KeyInput::isDown(Action::HandBrake);
+    physicsInput.throttle = KeyInput::isDown(Action::Throttle);
+
+    physicsInput.carAngle = rotation;
+    physicsInput.gear = gear;
+    physicsInput.steerDir;
+    physicsInput.steeredTime;
+    physicsInput.velocityX;
+    physicsInput.velocityY;
+
+    if(KeyInput::isDown(Action::GearAuto))
     {
         
     }
-    else if(Input::isDown(Action::GearAuto))
+    else if(KeyInput::isDown(Action::GearDown))
     {
         
     }
-    else if(Input::isDown(Action::GearDown))
+    else if(KeyInput::isDown(Action::GearUp))
     {
         
     }
-    else if(Input::isDown(Action::GearUp))
+    else if(KeyInput::isDown(Action::HandBrake))
     {
         
     }
-    else if(Input::isDown(Action::HandBrake))
+    else if(KeyInput::isDown(Action::Pause))
     {
         
     }
-    else if(Input::isDown(Action::Pause))
+    else if(KeyInput::isDown(Action::SteerLeft))
     {
         
     }
-    else if(Input::isDown(Action::SteerLeft))
+    else if(KeyInput::isDown(Action::SteerRight))
     {
         
     }
-    else if(Input::isDown(Action::SteerRight))
-    {
-        
-    }
-    else if(Input::isDown(Action::Throttle))
+    else if(KeyInput::isDown(Action::Throttle))
     {
         
     }
