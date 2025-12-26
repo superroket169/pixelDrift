@@ -1,0 +1,67 @@
+\doxysection{Coord Struct Reference}
+\hypertarget{structCoord}{}\label{structCoord}\index{Coord@{Coord}}
+
+
+\doxylink{structCoord}{Coord} is struct that is will use for entity\textquotesingle{}s coordinates.  
+
+
+
+
+{\ttfamily \#include $<$Coord.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structCoord_a510f27dc266181ead37a5bed57b2e9fb}\label{structCoord_a510f27dc266181ead37a5bed57b2e9fb} 
+constexpr {\bfseries Coord} ()=default
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+\Hypertarget{structCoord_aa0df6ee1a925a0b570ba115ac403682c}\label{structCoord_aa0df6ee1a925a0b570ba115ac403682c} 
+constexpr {\bfseries Coord} (float x\+\_\+, float y\+\_\+)
+\begin{DoxyCompactList}\small\item\em constructor that able to assign inital value \end{DoxyCompactList}\item 
+\Hypertarget{structCoord_ac73befcb8cf921ccda74750e9a67290b}\label{structCoord_ac73befcb8cf921ccda74750e9a67290b} 
+constexpr \mbox{\hyperlink{structCoord}{Coord}} {\bfseries operator+} (const \mbox{\hyperlink{structCoord}{Coord}} \&other) const
+\begin{DoxyCompactList}\small\item\em addition opeartor \end{DoxyCompactList}\item 
+\Hypertarget{structCoord_aed1ba194e389c014af1ee9fce6ab6bc2}\label{structCoord_aed1ba194e389c014af1ee9fce6ab6bc2} 
+constexpr \mbox{\hyperlink{structCoord}{Coord}} {\bfseries operator-\/} (const \mbox{\hyperlink{structCoord}{Coord}} \&other) const
+\begin{DoxyCompactList}\small\item\em subtraction opeartor \end{DoxyCompactList}\item 
+\Hypertarget{structCoord_a946e1af5882b16b4c913a2346a134cad}\label{structCoord_a946e1af5882b16b4c913a2346a134cad} 
+constexpr \mbox{\hyperlink{structCoord}{Coord}} \& {\bfseries operator+=} (const \mbox{\hyperlink{structCoord}{Coord}} \&other)
+\begin{DoxyCompactList}\small\item\em addition assignment opeartor \end{DoxyCompactList}\item 
+\Hypertarget{structCoord_a9c748f46b31d45c0632532739fa003dc}\label{structCoord_a9c748f46b31d45c0632532739fa003dc} 
+constexpr \mbox{\hyperlink{structCoord}{Coord}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{structCoord}{Coord}} \&other)
+\begin{DoxyCompactList}\small\item\em subtraction assignment operator \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}} = 0.f
+\item 
+float \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}} = 0.f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structCoord}{Coord} is struct that is will use for entity\textquotesingle{}s coordinates. 
+
+
+\begin{DoxyItemize}
+\item That strucure stores coordinate of entitys 2D x and y 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structCoord_a089b098faaca481f53834c7cd7605da5}\label{structCoord_a089b098faaca481f53834c7cd7605da5} 
+\index{Coord@{Coord}!x@{x}}
+\index{x@{x}!Coord@{Coord}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily float Coord\+::x = 0.f}
+
+Horizontal coordinate \Hypertarget{structCoord_a55a67a26b632758699c9f999348d9f06}\label{structCoord_a55a67a26b632758699c9f999348d9f06} 
+\index{Coord@{Coord}!y@{y}}
+\index{y@{y}!Coord@{Coord}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily float Coord\+::y = 0.f}
+
+Vertical coordinate 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/core/Coord.\+h\end{DoxyCompactItemize}

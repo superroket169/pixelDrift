@@ -1,0 +1,43 @@
+\doxysection{include/\+Gpu\+Preference.hpp File Reference}
+\hypertarget{GpuPreference_8hpp}{}\label{GpuPreference_8hpp}\index{include/GpuPreference.hpp@{include/GpuPreference.hpp}}
+
+
+Headers.  
+
+
+{\ttfamily \#include $<$SFML/\+Config.\+hpp$>$}\newline
+Include dependency graph for Gpu\+Preference.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{GpuPreference_8hpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{GpuPreference_8hpp_ab0233c2d867cbd561036ed2440a4fec0}{SFML\+\_\+\+DEFINE\+\_\+\+DISCRETE\+\_\+\+GPU\+\_\+\+PREFERENCE}}
+\begin{DoxyCompactList}\small\item\em A macro to encourage usage of the discrete GPU. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Headers. 
+
+File containing SFML\+\_\+\+DEFINE\+\_\+\+DISCRETE\+\_\+\+GPU\+\_\+\+PREFERENCE 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{GpuPreference_8hpp_ab0233c2d867cbd561036ed2440a4fec0}\label{GpuPreference_8hpp_ab0233c2d867cbd561036ed2440a4fec0} 
+\index{GpuPreference.hpp@{GpuPreference.hpp}!SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE@{SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE}}
+\index{SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE@{SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE}!GpuPreference.hpp@{GpuPreference.hpp}}
+\doxysubsubsection{\texorpdfstring{SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE}{SFML\_DEFINE\_DISCRETE\_GPU\_PREFERENCE}}
+{\footnotesize\ttfamily \#define SFML\+\_\+\+DEFINE\+\_\+\+DISCRETE\+\_\+\+GPU\+\_\+\+PREFERENCE}
+
+
+
+A macro to encourage usage of the discrete GPU. 
+
+In order to inform the Nvidia/\+AMD driver that an SFML application could benefit from using the more powerful discrete GPU, special symbols have to be publicly exported from the final executable.
+
+SFML defines a helper macro to easily do this.
+
+Place SFML\+\_\+\+DEFINE\+\_\+\+DISCRETE\+\_\+\+GPU\+\_\+\+PREFERENCE in the global scope of a source file that will be linked into the final executable. Typically it is best to place it where the main function is also defined. 

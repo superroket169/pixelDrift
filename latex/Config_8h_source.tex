@@ -1,0 +1,82 @@
+\doxysection{Config.\+h}
+\hypertarget{Config_8h_source}{}\label{Config_8h_source}\index{src/core/Config.h@{src/core/Config.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include<cstdint>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }Config}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ PI\ =\ 3.14159265358979323846f;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ uint32\_t\ WINDOW\_WIDTH\ =\ \ \ \ \ 1200;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ uint32\_t\ WINDOW\_HEIGHT\ =\ \ \ \ 1200;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{//sınır\ algılaması:}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ MIN\_X\ =\ \ \ \ \ \ \ \ \ \ \ \ \ -\/5400.f;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ MAX\_X\ =\ \ \ \ \ \ \ \ \ \ \ \ \ \ 600.f;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ MIN\_Y\ =\ \ \ \ \ \ \ \ \ \ \ \ \ -\/5600.f;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ MAX\_Y\ =\ \ \ \ \ \ \ \ \ \ \ \ \ \ 410.f;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ backGroundStartCoordX\ =\ 1000;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ backGroundStartCoordY\ =\ 600;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ FontPath[]\ =\ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}../assets/fonts/DejaVuSans-\/Bold.ttf"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ CarAssetPath[]\ =\ \ \ \ \ \ \textcolor{stringliteral}{"{}../assets/cars/default/DefaultCarTexture.png"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\ BackGroundPath[]\ =\ \ \ \ \textcolor{stringliteral}{"{}../assets/maps/default/backGround2.png"{}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ damping\ =\ 0.5;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearAccels[8]\ =\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ -\/500\ *\ damping,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ 300\ \ *\ damping,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ 700\ \ *\ damping,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ 1200\ *\ damping,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ 1800\ *\ damping,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ 2300\ *\ damping,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ 2650\ *\ damping,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ 2900\ *\ damping}
+\DoxyCodeLine{00036\ \ \ \ \ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearMaxes[8]\ =\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ 125,\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ 300,\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ 700,\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ 1200,\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ 1800,\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ 2300,\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ 2650,\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ 2900}
+\DoxyCodeLine{00047\ \ \ \ \ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ recommenedGearConstant\ =\ 0.75f;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearRtrMaxVel\_kmh\ =\ \ 14;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearOneMaxVel\_kmh\ =\ \ 35;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearSecMaxVel\_kmh\ =\ \ 85;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearThiMaxVel\_kmh\ =\ \ 143;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearFrtMaxVel\_kmh\ =\ \ 215;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearFthMaxVel\_kmh\ =\ \ 275;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearSixMaxVel\_kmh\ =\ \ 320;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ gearSvnMaxVel\_kmh\ =\ \ 350;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ SigmoidKConstant\ =\ \ \ 0.012;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ SigmoidMidConstant\ =\ 3.f;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ brakeForce\ =\ \ \ \ \ \ \ \ \ 2.2;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ handBrakeForce\ =\ \ \ \ \ 0.3;}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ turnSpeed\ =\ \ \ \ \ \ \ \ \ \ 0.001;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ maxTurnSpeed\ =\ \ \ \ \ \ \ 150;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ maxRPM\ =\ \ \ \ \ \ \ \ \ \ \ \ \ 7000;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ turnPowConstant\ =\ \ \ \ 1.1;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ MaxExtraTurnSpeed\ =\ \ 5.5;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ DEG2RAD\ =\ \ \ \ \ \ \ \ \ \ \ \ PI\ /\ 180;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ RAD2DEG\ =\ \ \ \ \ \ \ \ \ \ \ \ 180\ /\ PI;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{constexpr}\ uint32\_t\ maxLifeMarkSec\ =\ \ 7;}
+\DoxyCodeLine{00076\ \}}
+
+\end{DoxyCode}

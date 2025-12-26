@@ -1,0 +1,79 @@
+\chapter{pixel\+Drift}
+\hypertarget{md_README}{}\label{md_README}\index{pixelDrift@{pixelDrift}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ \begin{quote}
+\mbox{[}!\+Warning\mbox{]} Currently switching to modular file structure Code may have a lot of bug \end{quote}
+{\bfseries{A simple, pixel-\/based driving game/simulation focused on realistic drift physics.}}
+
+{\ttfamily pixel\+Drift} is a C++ project that uses the {\bfseries{SFML}} library. The goal is to create a fun, technical drift experience by using a dynamic friction model. The model checks the angle between the car\textquotesingle{}s speed and its direction to create realistic drifting.\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Features (v0.\+5.\+0 -\/ Core Mechanics Beta)}{Features (v0.5.0 - Core Mechanics Beta)}}\label{md_README_autotoc_md1}
+This beta version focuses on the main driving parts of the game.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Dynamic Drift Physics\+:}} The friction changes based on how much the car is turning. This gives a realistic and satisfying drift feeling.
+\item {\bfseries{Advanced Gear System\+:}}
+\begin{DoxyItemize}
+\item 7 Forward gears and Reverse (R).
+\item Automatic gear (Auto) mode is available.
+\item The game suggests the best gear and warns you if you are in the wrong one (by changing the gear text color).
+\end{DoxyItemize}
+\item {\bfseries{User Interface (UI)\+:}}
+\begin{DoxyItemize}
+\item Speedometer and RPM gauges.
+\item A Mini-\/\+Map to show your position.
+\item FPS (Frames Per Second) counter.
+\end{DoxyItemize}
+\item {\bfseries{Game Controls\+:}}
+\begin{DoxyItemize}
+\item Functional handbrake.
+\item Boundary control to keep the car on the track.
+\item A basic menu to start and exit the game.
+\end{DoxyItemize}
+\item {\bfseries{Tire Marks (Skid Marks)\+:}} Basic tire marks appear when you use the handbrake.
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md2}{}\doxysection{\texorpdfstring{Setup and Build (\+C++)}{Setup and Build (C++)}}\label{md_README_autotoc_md2}
+The project is written in C++ and needs the {\bfseries{SFML}} library for graphics and input.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{\texorpdfstring{Requirements}{Requirements}}\label{md_README_autotoc_md3}
+To compile and run this project, you need\+:
+
+
+\begin{DoxyItemize}
+\item A C++ Compiler (like GCC, Clang, or MSVC)
+\item The {\bfseries{SFML Library}} (especially the Graphics module)
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{How to Compile}{How to Compile}}\label{md_README_autotoc_md4}
+Assuming you have SFML installed, here are the general steps\+:
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone the Repository\+:}} {\ttfamily bash git clone \mbox{[}\href{https://github.com/superroket169/pixelDrift.git}{\texttt{ https\+://github.\+com/superroket169/pixel\+Drift.\+git}}\mbox{]}(\href{https://github.com/superroket169/pixelDrift.git}{\texttt{ https\+://github.\+com/superroket169/pixel\+Drift.\+git}}) cd pixel\+Drift }
+\item {\bfseries{Compile\+:}} {\ttfamily bash @section autotoc\+\_\+md5 Example GCC command (adjust paths and libs as needed for your system) g++ main.\+cpp -\/o pixel\+Drift src/main.\+cpp -\/lsfml-\/graphics -\/lsfml-\/window -\/lsfml-\/system }
+\item {\bfseries{Run the Game\+:}} {\ttfamily bash ./cd build ./run.bat }
+\end{DoxyEnumerate}\hypertarget{md_README_autotoc_md6}{}\doxysubsection{\texorpdfstring{🎮 Controls}{🎮 Controls}}\label{md_README_autotoc_md6}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Action   }&\cellcolor{\tableheadbgcolor}\textbf{ Key (Keyboard)    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Action   }&\cellcolor{\tableheadbgcolor}\textbf{ Key (Keyboard)    }\\\cline{1-2}
+\endhead
+{\bfseries{Accelerate}}   &\$\textbackslash{}uparrow\$ / {\ttfamily W}    \\\cline{1-2}
+{\bfseries{Brake/\+Reverse}}   &\$\textbackslash{}downarrow\$ / {\ttfamily S}    \\\cline{1-2}
+{\bfseries{Steer Right}}   &\$\textbackslash{}rightarrow\$ / {\ttfamily D}    \\\cline{1-2}
+{\bfseries{Steer Left}}   &\$\textbackslash{}leftarrow\$ / {\ttfamily A}    \\\cline{1-2}
+{\bfseries{Handbrake}}   &{\ttfamily E}    \\\cline{1-2}
+{\bfseries{Shift Up}}   &{\ttfamily LShift}    \\\cline{1-2}
+{\bfseries{Shift Down}}   &{\ttfamily LControl}    \\\cline{1-2}
+{\bfseries{Toggle Auto Gear}}   &{\ttfamily Q}    \\\cline{1-2}
+{\bfseries{Go to Menu}}   &{\ttfamily Esc}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md_README_autotoc_md7}{}\doxysubsection{\texorpdfstring{Future Plans}{Future Plans}}\label{md_README_autotoc_md7}
+We plan to improve these areas next\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Improve Graphics\+:}} Greatly improve the tire marks and add smoke effects.
+\item {\bfseries{Content\+:}} Add a car selection and track selection screen to the main menu (like S15, AE86, Supra MK4, etc.).
+\item {\bfseries{Customization\+:}} Create an Advanced Settings Panel so players can change friction, brake force, and other physics values. 
+\end{DoxyItemize}

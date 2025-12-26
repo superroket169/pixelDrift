@@ -1,0 +1,28 @@
+\doxysection{Input.\+h}
+\hypertarget{Input_8h_source}{}\label{Input_8h_source}\index{src/input/Input.h@{src/input/Input.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{enum\ class}\ Action}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ Throttle,}
+\DoxyCodeLine{00006\ \ \ \ \ Brake,}
+\DoxyCodeLine{00007\ \ \ \ \ HandBrake,}
+\DoxyCodeLine{00008\ \ \ \ \ Pause,}
+\DoxyCodeLine{00009\ \ \ \ \ SteerRight,}
+\DoxyCodeLine{00010\ \ \ \ \ SteerLeft,}
+\DoxyCodeLine{00011\ \ \ \ \ GearAuto,}
+\DoxyCodeLine{00012\ \ \ \ \ GearUp,}
+\DoxyCodeLine{00013\ \ \ \ \ GearDown}
+\DoxyCodeLine{00014\ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classKeyInput}{KeyInput}}\ }
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ isDown(Action\ action);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ isPressed(Action\ action);}
+\DoxyCodeLine{00029\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,33 @@
+\doxysection{Coord.\+h}
+\hypertarget{Coord_8h_source}{}\label{Coord_8h_source}\index{src/core/Coord.h@{src/core/Coord.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structCoord}{Coord}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}\ =\ 0.f;\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ =\ 0.f;\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord_a510f27dc266181ead37a5bed57b2e9fb}{Coord}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord_aa0df6ee1a925a0b570ba115ac403682c}{Coord}}(\textcolor{keywordtype}{float}\ x\_,\ \textcolor{keywordtype}{float}\ y\_)\ :\ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}(x\_),\ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}(y\_)\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord}{Coord}}\ \mbox{\hyperlink{structCoord_ac73befcb8cf921ccda74750e9a67290b}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}\ +\ other.\mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}},\ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ +\ other.\mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ \};\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord}{Coord}}\ \mbox{\hyperlink{structCoord_aed1ba194e389c014af1ee9fce6ab6bc2}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ other)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \{\ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}\ -\/\ other.\mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}},\ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ -\/\ other.\mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ \};\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ \mbox{\hyperlink{structCoord_a946e1af5882b16b4c913a2346a134cad}{operator+=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ other)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}\ +=\ other.\mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ +=\ other.\mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{constexpr}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ \mbox{\hyperlink{structCoord_a9c748f46b31d45c0632532739fa003dc}{operator-\/=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ other)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}}\ -\/=\ other.\mbox{\hyperlink{structCoord_a089b098faaca481f53834c7cd7605da5}{x}};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}}\ -\/=\ other.\mbox{\hyperlink{structCoord_a55a67a26b632758699c9f999348d9f06}{y}};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \};}
+
+\end{DoxyCode}

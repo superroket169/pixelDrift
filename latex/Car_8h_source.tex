@@ -1,0 +1,42 @@
+\doxysection{Car.\+h}
+\hypertarget{Car_8h_source}{}\label{Car_8h_source}\index{src/entity/Car.h@{src/entity/Car.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}../core/Coord.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../input/Input.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../physics/CarPhysics.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../world/Track.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCar}{Car}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{classCar}{Car}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ \mbox{\hyperlink{classKeyInput}{KeyInput}}\&\ input,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classTrack}{Track}}\&\ track,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{structCoord}{Coord}}\ getPosition()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ getRotation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ getSpeed()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ getRPM()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{structCoord}{Coord}}\ position;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ rotation\ =\ 0.f;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ 0.f;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ rpm\ =\ 0.f;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{structPhysics_1_1PhysicsOutput}{Physics::PhysicsOutput}}\ physicsOut;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{float}\ throttle\ =\ 0.f;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ brake\ =\ 0.f;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{float}\ handBrake\ =\ 0.f;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ steer\ =\ 0.f;}
+\DoxyCodeLine{00033\ \ \ \ \ Physics::Gear\ gear\ =\ Physics::Gear::One;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ applyPhysicsPhysicsOutput(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00036\ \};}
+
+\end{DoxyCode}

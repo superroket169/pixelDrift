@@ -1,0 +1,90 @@
+\doxysection{Car\+Physics.\+h}
+\hypertarget{CarPhysics_8h_source}{}\label{CarPhysics_8h_source}\index{src/physics/CarPhysics.h@{src/physics/CarPhysics.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ \ what\ will\ happen\ here:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ \ \ \ \ Optimum\ gear\ calculate\ for\ autoGear}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ \ \ \ \ \ steerign\ code\ for\ steering\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ \ \ \ \ \ acceleration\ code\ with\ sigmoids}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ planed\ :\ bool\ \ rearSlip;}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ planed\ :\ float\ slipAmount;}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00012\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }Physics}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{enum\ class}\ Gear}
+\DoxyCodeLine{00018\ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ R\ =\ 0,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ One\ =\ 1,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ Two\ =\ 2,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ Three\ =\ 3,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Four\ =\ 4,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ Five\ =\ 5,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ Six\ =\ 6,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ Seven\ =\ 7}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{enum\ class}\ steerStatus}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ Left\ =\ -\/1,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ Right\ =\ 1,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ Forward\ =\ 0}
+\DoxyCodeLine{00034\ \ \ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysics_1_1PhysicsInput}{PhysicsInput}}}
+\DoxyCodeLine{00037\ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ velocityX;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ velocityY;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ steeredTime;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ carAngle;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ steerStatus\ steerDir;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ throttle;\ \ \ \ \ \textcolor{comment}{//\ aralık\ :\ \ 0\ -\/>\ 1}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ handbrake;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ brake;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Gear\ \ gear;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ autoGear;}
+\DoxyCodeLine{00048\ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysics_1_1PhysicsOutput}{PhysicsOutput}}}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ acceleration;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angularVelocity;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dirMultiplerX;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ dirMultiplerY;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ slip;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ planed\ :\ bool\ \ rearSlip;}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ planed\ :\ float\ slipAmount;}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Gear\ \ recommendedGear;}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structPhysics_1_1vectorVelocity}{vectorVelocity}}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ DirX;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ DirY;}
+\DoxyCodeLine{00066\ \ \ \ \ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPhysics_1_1CarPhysics}{CarPhysics}}}
+\DoxyCodeLine{00069\ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysics_1_1PhysicsOutput}{PhysicsOutput}}\ update(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysics_1_1PhysicsInput}{PhysicsInput}}\&\ input,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ dampingMultiplier;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Gear\ calculateOptGear(\textcolor{keywordtype}{float}\ speed)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ computeAcceleration(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPhysics_1_1PhysicsInput}{PhysicsInput}}\&\ input,\ \textcolor{keywordtype}{float}\ speed)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ computeSteer(\textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ steeredTime,\ steerStatus\ steerDir)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ computeSpeed(\textcolor{keywordtype}{float}\ velocityX,\ \textcolor{keywordtype}{float}\ velocityY)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structPhysics_1_1vectorVelocity}{vectorVelocity}}\ computeDirVelocity(\textcolor{keywordtype}{float}\ accel,\ \textcolor{keywordtype}{float}\ carAngle)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ \ \ \ \ \};}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ brake\ kodu\ eklenecek}}
+
+\end{DoxyCode}

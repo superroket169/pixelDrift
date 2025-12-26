@@ -1,0 +1,26 @@
+\doxysection{Track.\+h}
+\hypertarget{Track_8h_source}{}\label{Track_8h_source}\index{src/world/Track.h@{src/world/Track.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}core/Coord.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{enum\ class}\ worldCollisionType}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ Up,}
+\DoxyCodeLine{00008\ \ \ \ \ Down,}
+\DoxyCodeLine{00009\ \ \ \ \ Left,}
+\DoxyCodeLine{00010\ \ \ \ \ Right,}
+\DoxyCodeLine{00011\ \ \ \ \ None\ =\ 0}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTrack}{Track}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{structCoord}{Coord}}\ getSpawn()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00018\ \ \ \ \ worldCollisionType\ collisionDir(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&\ pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ frictionAt(\textcolor{keyword}{const}\ \mbox{\hyperlink{structCoord}{Coord}}\&)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00020\ \};}
+
+\end{DoxyCode}
